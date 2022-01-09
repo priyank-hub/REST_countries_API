@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-light">   
+  <div id="app" class="">   
     <Main msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
