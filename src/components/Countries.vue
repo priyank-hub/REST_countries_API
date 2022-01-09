@@ -70,6 +70,7 @@
         <div>
           <h3>All countries</h3>
           <div v-for="(country, index) in filteredCountries" :key="index">
+            <img :src="country.flags.svg" height="50" alt="">
             {{ country.name.common }} <br><br>
           </div>
         </div>
