@@ -3,24 +3,37 @@
 
     <v-app>
       <!-- appbar -->
-      <nav class="bg-white p-3 border-bottom font-outfit sticky-top" style="box-shadow: 0px 5px 20px -20px #000000; z-index: 100">
+      <v-app-bar
+        elevation="4"
+        class="font-outfit"
+        style="max-height: 60px; position: sticky; top: -1px; z-index: 100"
+      >
         <div class="container">
-          <div class="row justify-content-between">
+          <div class="row justify-content-between align-items-center">
             <div>
-              <span class="" style="font-size: 20px; font-weight: 700; color: black">
+              <span class="" style="font-size: 20px; font-weight: 700;">
                 Where in the world?
               </span>
             </div>
 
-            <div style="color: black">
-              <i class="far fa-moon"></i>
-              <span>
-                Dark Mode
+            <div style="cursor: pointer" @click="darkMode">
+              <span v-if="this.$vuetify.theme.dark">
+                <i class="fas fa-lightbulb mx-2"></i>
+                <span>
+                  Light Mode
+                </span>
               </span>
+              <span v-else>
+                <i class="far fa-moon mx-2"></i>
+                <span>
+                  Dark Mode
+                </span>
+              </span>
+              
             </div>
           </div>
-        </div>      
-      </nav>
+        </div>
+      </v-app-bar>
 
       <!-- list of all countries -->
       <Countries />
@@ -39,6 +52,11 @@ export default {
   },
   components: {
     Countries,
+  },
+  methods: {
+    darkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
   }
 }
 </script>

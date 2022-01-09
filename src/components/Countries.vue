@@ -1,55 +1,22 @@
 <template>
-  <div class="bg-light">
+  <div class="">
     <div id="countries" class="container mt-5">
 
         <!-- filters -->
         <div class="row justify-content-between align-items-center">
           <div class="col-12 col-md-5">
             <v-form>
-              <v-container>
-                <v-text-field
-                  placeholder="Search for a country..."
-                  solo
-                  v-model="search"
-                  style="font-size: 14px"
-                ></v-text-field>
-              </v-container>
+              <v-text-field
+                placeholder="Search for a country..."
+                solo
+                v-model="search"
+                style="font-size: 14px"
+              ></v-text-field>
             </v-form>
           </div>
 
-          <div class="col-12 col-md-3">
+          <div class="col-6 col-md-3">
             <div class="text-center">
-              <!-- <v-menu offset-y>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="white"
-                    dark
-                    v-bind="attrs"
-                    v-on="on"
-                    class="text-muted"
-                    v-model="region"
-                    style="padding: 25px 20px; font-size: 12px"
-                  >
-                    <div class="d-flex flex-row justify-content-between">
-                      <div class="">
-                        Filter By Region
-                      </div>
-                      <div>
-                        <i class="fas fa-angle-down mx-2"></i>
-                      </div>
-                    </div>
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item
-                    v-for="(item, index) in items"
-                    :key="index"
-                  >
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu> -->
-
               <v-select
                 :items="items"
                 placeholder="Filter By Region"
