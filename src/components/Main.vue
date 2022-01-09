@@ -3,7 +3,7 @@
 
     <v-app>
       <!-- appbar -->
-      <nav class="bg-white p-3 border-bottom font-outfit" style="box-shadow: 0px 5px 20px -20px #000000">
+      <nav class="bg-white p-3 border-bottom font-outfit sticky-top" style="box-shadow: 0px 5px 20px -20px #000000; z-index: 100">
         <div class="container">
           <div class="row justify-content-between">
             <div>
