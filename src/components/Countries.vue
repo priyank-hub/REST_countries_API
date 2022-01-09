@@ -68,34 +68,73 @@
         
         <!-- countries -->
         <div>
-            
+          <h3>All countries</h3>
+          <div v-for="(country, index) in filteredCountries" :key="index">
+            {{ country.name.common }} <br><br>
+          </div>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Countries',
   props: {
     
   },
   data() {
-      return {
-          search: '',
-          region: '',
-          items: [
-            'Africa',
-            'America',
-            'Asia',
-            'Europe',
-            'Oceania',
-          ],
+    return {
+        countries: [],
+        search: '',
+        region: '',
+        items: [
+          'All',
+          'Africa',
+          'America',
+          'Asia',
+          'Europe',
+          'Oceania',
+        ],
+    }
+  },
+  computed: {
+    filteredCountries() {
+      if (this.region && this.region != 'All') {
+        let arr = this.countries.filter(country => {
+          return country.name.common.toLowerCase().includes(this.search.toLowerCase()) 
+                  && country.region.toLowerCase().includes(this.region.toLowerCase());
+        });
+        return arr;
       }
+      else {
+        let arr = this.countries.filter(country => {
+          return country.name.common.toLowerCase().includes(this.search.toLowerCase());
+        });
+        return arr;
+      }
+    },
+  },
+  async mounted() {
+    await axios.get('https://restcountries.com/v3.1/all')
+    .then(res => {
+      console.log('response', res)
+      if (res.status == 200) {
+        this.countries = res.data
+      } 
+      else {
+        console.log('Opps error');
+      }
+    });
   },
   methods: {
     regionChange() {
       console.log('region', this.region);
+      this.filteredCountries.filter(country => {
+        return country.region.toLowerCase().includes(this.region.toLowerCase());
+      });
     }
   }
 }
