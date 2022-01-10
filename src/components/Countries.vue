@@ -44,48 +44,51 @@
           </div>
         </div>
 
-        <div v-else class="row justify-content-center">
+        <div v-else class="row">
           <div class="col-12 col-md-3 col-lg-4" v-for="(country, index) in filteredCountries" :key="index">
             <div class="m-2">
-              <v-card
-                class=""
-                max-width="344"              
-              >
-                <v-img
-                  :src="country.flags.svg"
-                  height="200px"
-                ></v-img>
+              <router-link :to="{ name: 'country', params: { countryName: country.cca2, country: country}}"
+              class="" style="text-decoration: none"> 
+                <v-card
+                  class=""
+                  max-width="344"             
+                >
+                  <v-img
+                    :src="country.flags.svg"
+                    height="200px"
+                  ></v-img>
 
-                <v-card-title style="font-weight: 700; font-size: 16px">
-                  <span v-if="country.name.common.length > 17">
-                    {{ country.name.common.substring(0,15) }}...
-                  </span>
-                  <span v-else>
-                    {{ country.name.common }}
-                  </span>
-                </v-card-title>
+                  <v-card-title style="font-weight: 700; font-size: 16px">
+                    <span v-if="country.name.common.length > 17">
+                      {{ country.name.common.substring(0,15) }}...
+                    </span>
+                    <span v-else>
+                      {{ country.name.common }}
+                    </span>
+                  </v-card-title>
 
-                <v-card-text class="text-left">
-                  <div>
-                    <b>Population: </b>
-                    <span>
-                      {{ country.population.toLocaleString() }}
-                    </span>
-                  </div>
-                  <div>
-                    <b>Region: </b>
-                    <span>
-                      {{ country.region }}
-                    </span>
-                  </div>
-                  <div>
-                    <b>Capital: </b>
-                    <span v-for="capital in country.capital" :key="capital">
-                      {{ capital }}
-                    </span>
-                  </div>
-                </v-card-text>
-              </v-card>          
+                  <v-card-text class="text-left">
+                    <div>
+                      <b>Population: </b>
+                      <span>
+                        {{ country.population.toLocaleString() }}
+                      </span>
+                    </div>
+                    <div>
+                      <b>Region: </b>
+                      <span>
+                        {{ country.region }}
+                      </span>
+                    </div>
+                    <div>
+                      <b>Capital: </b>
+                      <span v-for="capital in country.capital" :key="capital">
+                        {{ capital }}
+                      </span>
+                    </div>
+                  </v-card-text>
+                </v-card>          
+              </router-link>
             </div>
           </div>
         </div>
@@ -158,6 +161,11 @@ export default {
       this.filteredCountries.filter(country => {
         return country.region.toLowerCase().includes(this.region.toLowerCase());
       });
+    },
+
+    go(country) {
+      console.log('going to', country.name.common);
+      this.$router.push(country.name.common)
     }
   }
 }

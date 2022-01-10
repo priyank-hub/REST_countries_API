@@ -3,7 +3,7 @@
 
     <v-app>
       <!-- appbar -->
-      <v-app-bar
+      <!-- <v-app-bar
         elevation="4"
         class="font-outfit"
         style="max-height: 60px; position: sticky; top: -1px; z-index: 100"
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-      </v-app-bar>
+      </v-app-bar> -->
 
       <!-- list of all countries -->
       <Countries />
@@ -54,9 +54,7 @@ export default {
     Countries,
   },
   methods: {
-    darkMode() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    }
+    
   }
 }
 </script>
